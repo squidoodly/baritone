@@ -23,7 +23,7 @@ plugins {
 
 
 group 'baritone'
-version '1.7.0'
+version '1.17-SNAPSHOT'
 
 import baritone.gradle.task.CreateDistTask
 import baritone.gradle.task.ProguardTask
@@ -177,6 +177,22 @@ publishing {
     publications {
         maven(MavenPublication) {
             artifact 'dist/baritone-api-fabric-1.7.0.jar'
+        }
+    }
+
+    repositories {
+        maven {
+            name = "meteor-maven"
+            url = "https://maven.meteordev.org/snapshots"
+
+            credentials {
+                username = System.getenv("MAVEN_METEOR_ALIAS")
+                password = System.getenv("MAVEN_METEOR_TOKEN")
+            }
+
+            authentication {
+                basic(BasicAuthentication)
+            }
         }
     }
 }
