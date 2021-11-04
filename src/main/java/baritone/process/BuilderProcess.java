@@ -108,6 +108,7 @@ public final class BuilderProcess extends BaritoneProcessHelper implements IBuil
 
     public void pause() {
         paused = true;
+        BaritoneAPI.getProvider().getPrimaryBaritone().getInputOverrideHandler().setInputForceState(Input.CLICK_LEFT, false);
     }
 
     @Override
